@@ -1,0 +1,55 @@
+<ion-content class="login-page ion-text-center">
+    <ion-card class="reg-card">
+        <form [formGroup]="registrationForm" (ngSubmit)="register()">
+            <ion-item class="margin-auto" lines="none">
+                <ion-avatar (click)="presentModal()" class="avatar">
+                    <ion-img class="cover-image" src="../../assets/{{avatar}}"></ion-img>
+                </ion-avatar>
+            </ion-item>
+            <ion-icon (click)="presentModal()" color="primary" slot="end" name="create"></ion-icon>
+            <ion-note (click)="presentModal()" color="primary">Profile</ion-note>
+            <ion-item>
+                <ion-label position="floating">Name</ion-label>
+                <ion-input formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Email-Id</ion-label>
+                <ion-input type="email" formControlName="emailId" pattern="^[a-zA-Z]+[0-9a-zA-Z.%_-]+@[a-zA-Z]+.(com|in|org|net|COM|IN|NET|ORG|co.in)$"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input type="password" min="5" formControlName="password"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">MM/DD/YYYY</ion-label>
+                <ion-datetime formControlName="dob" displayFormat="MM/DD/YYYY" placeholder="Date of Birth" min="1950-01-01" max="2012-12-12"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <form action="">
+                    <span class="gender-label">Gender</span>
+                    <input type="radio" (click)="genderSelect('male')" checked name="gender" value="male"> Male &nbsp;&nbsp;&nbsp;
+                    <input type="radio" (click)="genderSelect('female')" name="gender" value="female"> Female
+                </form>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">(optional)</ion-label>
+                <ion-textarea placeholder="About yourself" maxlength="250" formControlName="about"></ion-textarea>
+            </ion-item>
+
+            <ion-item lines="none" class="ion-padding-top">
+                <ion-button size="medium" [disabled]="registrationForm.invalid" type="submit" class="submit-button" block color="primary">REGISTER
+                </ion-button>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-note slot="start" class="ion-text-center"><span>Already a member?</span>&nbsp;<span routerLink="../login" class="sign-up">Login</span>
+                </ion-note>
+            </ion-item>
+        </form>
+    </ion-card>
+
+</ion-content>

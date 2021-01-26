@@ -1,0 +1,88 @@
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none !important;
+    border: 1px solid rgb(101, 133, 192);
+    box-shadow: 0 0 10px #719ECE;
+}
+
+.submit-button {
+    width: 100%;
+}
+
+.invalid-feedback {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    color: rgb(250, 246, 247);
+}
+
+.tags {
+    overflow-x: auto;
+    word-break: break-all;
+}
+
+.chip {
+    color: #fff;
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 10px;
+    line-height: 20px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.tagInput {
+    margin-bottom: 1rem;
+    border: 2px solid rgb(50, 146, 236);
+}
+
+.closebtn {
+    line-height: 18px;
+    padding-left: 10px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    float: right;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    text-align: center;
+    padding-top: 5px;
+    width: 5rem;
+    height: 2rem;
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    background-color: #FF5722;
+    display: inline-block;
+}
+
+.inputfile:focus+label,
+.inputfile+label:hover {
+    background-color: #FF5722;
+}
+
+.inputfile:focus+label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}

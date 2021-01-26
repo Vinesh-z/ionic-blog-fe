@@ -1,0 +1,99 @@
+ion-card {
+    height: 13rem;
+    width: 90%;
+    position: relative;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.205);
+}
+
+.date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FF5722;
+    color: #fff;
+    padding: 0.5em;
+}
+
+.date span {
+    display: block;
+    text-align: center;
+}
+
+.date .day {
+    font-weight: 500;
+    font-size: 14px;
+    text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.18);
+}
+
+.date .month {
+    text-transform: uppercase;
+}
+
+.date .month,
+.date .year {
+    font-size: 6px;
+}
+
+.blog-stats {
+    text-align: center;
+    top: 0%;
+    position: absolute;
+    color: #FF5722;
+    right: 0%;
+}
+
+.cover-image {
+    object-fit: cover;
+    object-position: top center;
+}
+
+.stats-col {
+    text-align: center;
+}
+
+.stats-value {
+    text-align: center;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.637);
+}
+
+.blog-name {
+    margin-left: 0.5em;
+    position: absolute;
+    top: 80%;
+    font-size: 0.8em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    padding-right: 0.5em;
+}
+
+.author-name {
+    color: #FF5722;
+    font-weight: bold;
+    margin-left: 0.5em;
+    font-size: 0.7em;
+    position: absolute;
+    top: 72%;
+    width: 100%;
+}
+
+ion-thumbnail {
+    filter: brightness(60%);
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.read-time {
+    float: right;
+    padding-right: 6px;
+    color: rgba(255, 255, 255, 0.753);
+}
+
+.flash {
+    padding-top: 2px;
+    color: rgb(255, 255, 0);
+}

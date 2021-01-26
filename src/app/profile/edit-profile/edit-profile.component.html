@@ -1,0 +1,48 @@
+<ion-item class="blogHeader" color='dark' lines="full">
+    <ion-button slot="start" (click)='goBack()' color="orange" class="md button button-clear">
+        <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
+</ion-item>
+
+<ion-content class="login-page ion-text-center">
+    <ion-card class="reg-card">
+        <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()">
+            <ion-item class="margin-auto" lines="none">
+                <ion-avatar (click)="presentModal()" class="avatar">
+                    <ion-img class="cover-image" src="../../assets/{{avatar}}"></ion-img>
+                </ion-avatar>
+            </ion-item>
+            <ion-note (click)="presentModal()" color="primary">Edit</ion-note>&nbsp;
+            <ion-icon (click)="presentModal()" color="primary" slot="end" name="create"></ion-icon>
+
+            <ion-item>
+                <ion-label position="floating">Name</ion-label>
+                <ion-input formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Email-Id</ion-label>
+                <ion-input value="Readonly" readonly type="email" formControlName="emailId" pattern="^[a-zA-Z]+[0-9a-zA-Z.%_-]+@[a-zA-Z]+.(com|in|org|net|COM|IN|NET|ORG|co.in)$"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">MM/DD/YYYY</ion-label>
+                <ion-datetime formControlName="dob" displayFormat="MM/DD/YYYY" placeholder="Date of Birth" min="1950-01-01" max="2012-12-12"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <form action="">
+                    <span class="gender-label">Gender</span>
+                    <input type="radio" (click)="genderSelect('male')" [checked]="gender==='male'" name="gender" value="male"> Male &nbsp;&nbsp;&nbsp;
+                    <input type="radio" (click)="genderSelect('female')" [checked]="gender==='female'" name="gender" value="female"> Female
+                </form>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">(optional)</ion-label>
+                <ion-textarea placeholder="About yourself" maxlength="250" formControlName="about"></ion-textarea>
+            </ion-item>
+            <ion-item lines="none" class="ion-padding-bottom ion-padding-top">
+                <ion-button size="medium" [disabled]="editProfileForm.invalid" type="submit" class="submit-button" block color="primary">Confirm
+                </ion-button>
+            </ion-item>
+        </form>
+    </ion-card>
+
+</ion-content>

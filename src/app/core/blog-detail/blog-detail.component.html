@@ -1,0 +1,79 @@
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)" #scroller *ngIf="loaded">
+    <div class="container" *ngIf="blog">
+        <ion-item class="blogHeader" color='dark' lines="full">
+            <ion-button slot="start" (click)='goBack()' color="orange" class="md button button-clear">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+            <ion-icon name="more" (click)='presentPopover($event)' slot="end"></ion-icon>
+        </ion-item>
+        <app-unit-blog [blog]="blog"></app-unit-blog>
+    </div>
+    <ion-item lines="none">
+        <ion-icon (click)="likeBlog()" *ngIf="!liked" name="thumbs-up"></ion-icon>
+        <ion-icon (click)="dislikeBlog()" *ngIf="liked" color="primary" name="thumbs-up"></ion-icon>
+        <ion-text class="ion-padding-start">{{likesCount}} Likes</ion-text>
+    </ion-item>
+    <div class="divider">
+        <hr>
+    </div>
+    <ion-text class="ion-text-center" *ngIf='comments.length>0'>
+        <h5>Comments:</h5>
+    </ion-text>
+    <ion-card *ngFor='let comment of comments; let i= index;'>
+        <ion-item lines='full'>
+            <img slot="start" class="avatar" src="../../assets/{{comment.author.profile}}">
+            <ion-note class="ion-text-capitalize" color='orange' slot="start">{{comment.author.name}}</ion-note>
+            <ion-note color='orange' slot="start">{{comment.date}}</ion-note>
+            <ion-icon *ngIf="comment.author._id === userId" (click)="deleteComment(comment)" name="trash" color='danger' slot="end"></ion-icon>
+        </ion-item>
+        <ion-card-content>
+            {{comment.content}}
+            <ion-icon color='orange' *ngIf="!toggle[i]" slot="end" name="undo" (click)="toggle[i] = !toggle[i]">
+            </ion-icon>
+            <ion-note color='orange' *ngIf="!toggle[i]" (click)="toggle[i] = !toggle[i]">reply</ion-note>
+        </ion-card-content>
+
+
+        <ion-card>
+            <form *ngIf="toggle[i]" [formGroup]="commentReplyForm" (ngSubmit)="addReplyComment(comment._id)">
+                <ion-input formControlName="blogreplycomment" maxlength='150' autocapitalize placeholder="Reply">
+                </ion-input>
+                <small class="char-limit">Within 150 characters</small>
+                <ion-item>
+                    <ion-button type="submit" [disabled]="commentReplyForm.invalid" class="sub-button ion-margin-top" block color="orange">Post</ion-button>
+                    <ion-button type="button" (click)="toggle[i] = !toggle[i]" block class="sub-button ion-margin-top" color="dark">Cancel</ion-button>
+                </ion-item>
+            </form>
+        </ion-card>
+        <ion-card *ngFor='let subComment of comment.subComments' color='light'>
+            <ion-item lines='full' color='light'>
+                <ion-note class="ion-text-capitalize" color='orange' slot="start">{{subComment.author.name}}</ion-note>
+                <ion-icon *ngIf="subComment.author._id === userId" (click)="deleteReplyComment(comment,subComment)" name="trash" color='danger' slot="end">
+                </ion-icon>
+            </ion-item>
+            <ion-card-content>
+                {{subComment.content}}
+            </ion-card-content>
+        </ion-card>
+    </ion-card>
+
+    <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+        <ion-text class="ion-text-center">
+            <h5>Add Comment:</h5>
+        </ion-text>
+        <ion-card class="comment-input">
+            <ion-textarea formControlName="blogcomment" maxlength='150' autocapitalize placeholder="New Comment!">
+            </ion-textarea>
+        </ion-card>
+        <small class="char-limit">Within 150 characters</small>
+        <ion-item>
+            <ion-button type="submit" [disabled]="commentForm.invalid" class="submit-button" block color="orange">Submit
+            </ion-button>
+        </ion-item>
+    </form>
+    <ion-fab *ngIf="scrolled" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="backToTop()" color="orange">
+            <ion-icon name="arrow-round-up"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

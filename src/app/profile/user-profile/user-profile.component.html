@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-button slot="end" (click)='goBack()' color="orange" class="md button button-clear">
+            <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="container" *ngIf='author'>
+        <header>
+        </header>
+        <main>
+            <div class="row">
+                <div class="left col-lg-4">
+                    <div class="photo-left">
+                        <img class="photo" src="../../assets/{{author.profile}}" />
+                        <div class="active"></div>
+                    </div>
+                    <h4 class="name ion-text-capitalize">{{author.name}}</h4>
+                    <p class="info">{{author.emailId}}</p>
+                    <ion-row>
+                        <ion-col class="stats">
+                            <p class="number-stat">{{followersCount}}</p>
+                            <p class="desc-stat">Followers</p>
+                        </ion-col>
+                        <ion-col class="stats">
+                            <p class="number-stat">{{followingCount}}</p>
+                            <p class="desc-stat">Following</p>
+                        </ion-col>
+                        <ion-col class="stats">
+                            <p class="number-stat">{{postsCount}}</p>
+                            <p class="desc-stat">Posts</p>
+                        </ion-col>
+                    </ion-row>
+                    <p class="desc" *ngIf="author.about">{{author.about}}</p>
+                </div>
+            </div>
+            <div *ngIf="authorId!=userId">
+                <div (click)="followAuthor()" *ngIf="!following" class="follow-div">
+                    <span class="follow">Follow</span>
+                </div>
+                <div (click)="unFollowAuthor()" *ngIf="following" class="follow-div">
+                    <span class="following">Following</span>
+                </div>
+            </div>
+        </main>
+    </div>
+</ion-content>

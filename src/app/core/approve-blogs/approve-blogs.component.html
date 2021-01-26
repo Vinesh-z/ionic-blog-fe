@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-button slot="end" (click)='goBack()' color="orange" class="md button button-clear">
+            <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+        <ion-title>Approve Blogs</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-grid>
+    <ion-row>
+        <ion-col size="6" *ngFor="let blog of blogs">
+            <app-blog-display (click)="blogDetail(blog)" [blog]="blog"></app-blog-display>
+        </ion-col>
+    </ion-row>
+</ion-grid>

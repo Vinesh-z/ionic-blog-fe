@@ -1,0 +1,35 @@
+<div *ngIf="blog">
+    <ion-text class="ion-text-center ion-text-uppercase" bold color='orange'>
+        <h1 class="blog-name">{{blog.blogName}} </h1>
+    </ion-text>
+
+    <ion-card class="image-card">
+        <ion-thumbnail class="cover-image">
+            <ion-img src="{{url.BASE_URL}}{{blog.imageUrl[0]}}"></ion-img>
+        </ion-thumbnail>
+    </ion-card>
+    <ion-card>
+        <ion-item class="authorName" lines="none" (click)="authorProfile()">
+            <img class="avatar" src="../../assets/{{blog.author.avatar}}">
+            <span> <small class="ion-text-uppercase author">{{blog.author[0].name}}</small></span> &nbsp;
+            <span> <small class="created"> | {{blog.createdAt}}</small>
+          </span>
+            <ion-icon slot="end" class="ion-padding-start" color="primary" name="eye"></ion-icon>
+        </ion-item>
+    </ion-card>
+    <div class="ion-padding-start">
+        <span class="tags">
+          <div [ngStyle]="{'background-color': colors[i%8]}" class="chip"
+              *ngFor="let tag of blog.tags; let i = index">
+              {{tag}}
+          </div>
+      </span>
+    </div>
+    <!-- <ion-card>
+    <div [innerHtml]="blog.content"></div>
+    </ion-card> -->
+    <div class="ql-container ql-snow" style="border-width: 0;">
+        <div class="ql-editor" [innerHTML]="blog.content">
+        </div>
+    </div>
+</div>

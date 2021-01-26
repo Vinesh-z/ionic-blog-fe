@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-button slot="end" (click)='goBack()' color="orange" class="md button button-clear">
+            <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+        <ion-title>Pending Blog</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="loaded">
+    <app-unit-blog [blog]="blog"></app-unit-blog>
+    <ion-card>
+        <ion-item class="blogStatus ion-padding-top" lines="none">
+            <ion-note>Status:</ion-note> &nbsp;
+            <ion-note class="ion-text-capitalize" [ngStyle]="{'color':blog.status === 'pending' ? '#FFA000' : '#d50000' }">{{blog.status}}</ion-note> &nbsp;
+            <ion-note class="ion-padding-start">Reason:</ion-note> &nbsp;
+            <ion-note class="ion-text-capitalize ion-text-justify" [ngStyle]="{'color':blog.status === 'pending' ? '#FFA000' : '#d50000' }">{{blog.reason}}</ion-note>
+        </ion-item>
+    </ion-card>
+    <ion-item *ngIf="blog.status === 'rejected' && userId === author._id">
+        <ion-button (click)="editBlog()" type="button" class="edit-button" block color="primary">Edit
+        </ion-button>
+        <ion-button (click)="deleteBlog()" type="button" class="edit-button" block color="danger">Delete
+        </ion-button>
+    </ion-item>
+    <ion-item *ngIf="blog.status !== 'rejected' && user.role === 'moderator'">
+        <ion-button (click)="approveBlog()" type="button" class="edit-button" block color="success">Approve
+        </ion-button>
+        <ion-button (click)="rejectBlog()" type="button" class="edit-button" block color="danger">Reject
+        </ion-button>
+    </ion-item>
+</ion-content>

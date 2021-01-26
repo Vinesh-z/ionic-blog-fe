@@ -1,0 +1,41 @@
+<ion-content class="login-page ion-text-center">
+    <ion-card class="login-card">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <ion-item class="margin-auto" lines="none">
+                <ion-avatar class="avatar">
+                    <img src="../../assets/avatar.jpg">
+                </ion-avatar>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Email</ion-label>
+                <ion-input pattern="^[a-zA-Z]+[0-9a-zA-Z.%_-]+@[a-zA-Z]+.(com|in|org|net|COM|IN|NET|ORG|co.in)$" formControlName="emailId"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-button size="medium" type="submit" [disabled]="loginForm.invalid" class="submit-button" block color="primary">LOGIN
+                </ion-button>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-note slot="start" class="ion-text-center"><span>New User?</span>&nbsp;<span routerLink="../register" class="sign-up">Sign-Up</span>
+                </ion-note>
+                <ion-note slot="end" color='primary'><span class="forgot-password">Forgot password?</span></ion-note>
+            </ion-item>
+
+            <div class="or-div">
+                <hr>
+                <span class="or">OR</span>
+            </div>
+
+            <div class="google-btn">
+                <div class="google-icon-wrapper">
+                    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                </div>
+                <p class="btn-text"><b>Sign in with Google</b></p>
+            </div>
+        </form>
+    </ion-card>
+
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Add Blog</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <form [formGroup]="blogForm" (ngSubmit)="addBlog()">
+        <div class="form-group">
+            <input type="text" class="form-control" id="blogName" formControlName="blogName" aria-describedby="blogName" placeholder="Enter the Blog Name" [ngClass]="{ 'is-invalid': f.blogName.touched && f.blogName.errors }">
+            <div *ngIf="f.blogName.touched && f.blogName.errors" class="invalid-feedback">Empty Blog Name</div>
+        </div>
+
+        <ion-item lines="full">
+            <ion-label slot="start">Blog cover image:</ion-label>
+            <input type="file" name="file" id="file" class="inputfile" (change)="fileChangeEvent($event)" single />
+            <label style="overflow: hidden;" slot="end" for="file">{{fileName}} </label>
+            <ion-icon *ngIf='filesToUpload' color='success' name="checkmark-circle-outline"></ion-icon>
+        </ion-item>
+        <ion-item (click)='presentModal()' lines="full">
+            <ion-label slot="start">Category</ion-label>
+            <ion-label color="primary" class="ion-text-end">{{chosenCategory}}</ion-label>
+        </ion-item>
+        <ion-item class="tagsItem">
+            <div>
+                <ion-input #tagInput type="text" class="tagInput" maxlength="10" (keyup.enter)="inputTags(tagInput)" class="form-control form-control-sm text-box" id="addServ" aria-describedby="policyNameHelp" placeholder="Add Tags"></ion-input>
+            </div>
+        </ion-item>
+
+        <div class="ion-margin-bottom ion-margin-top">
+            <span class="tags">
+                <div [ngStyle]="{'background-color': colors[i%8]}" class="chip" *ngFor="let tag of Tags; let i = index">
+                    {{tag}}
+                    <span class="closebtn" (click)="removeTags(i)">&times;</span>
+        </div>
+        </span>
+        </div>
+
+        <quill-editor class="form-control" [ngClass]="{ 'is-invalid': f.blogContent.touched && f.blogContent.errors }" formControlName="blogContent"></quill-editor>
+
+        <div *ngIf="f.blogContent.touched && f.blogContent.errors" class="invalid-feedback">Please fill content</div>
+        <div>
+            <ion-button type="submit" [disabled]="blogForm.invalid" class="submit-button ion-margin-top" block color="orange">Submit</ion-button>
+        </div>
+    </form>
+</ion-content>

@@ -1,0 +1,37 @@
+.container {
+    margin-bottom: 2rem;
+}
+
+hr {
+    border-bottom: 0.5px solid rgb(103, 104, 105);
+}
+
+.divider {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.comment-input {
+    height: 5rem;
+}
+
+.sub-button {
+    width: 50%;
+}
+
+.submit-button {
+    width: 100%;
+}
+
+.char-limit {
+    padding-left: 10px;
+}
+
+.avatar {
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: top center;
+}

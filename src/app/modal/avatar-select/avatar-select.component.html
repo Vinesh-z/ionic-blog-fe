@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-button slot="end" color="orange" (click)="dismiss('null')" class="md button button-clear">Close</ion-button>
+        <ion-title>Select Avatar</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row class="ion-padding-start">
+            <ion-col class="ion-padding-bottom" size="4" *ngFor="let avatar of avatars">
+                <ion-avatar (click)="dismiss(avatar)" class=" avatar">
+                    <ion-img class="cover-image" src="../../assets/{{avatar}}"></ion-img>
+                </ion-avatar>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
